@@ -1,79 +1,103 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>دليل المستخدم</title>
   <style>
     body {
-      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-      background-color: #ffffff;
-      color: #222;
+      font-family: "Tahoma", sans-serif;
       margin: 0;
-      padding: 0;
+      background-color: #f9fafc;
+      color: #222;
       line-height: 1.8;
     }
+
     header {
-      background-color: #003366;
-      color: #fff;
-      padding: 20px;
+      background-color: #0a3d62;
+      color: white;
       text-align: center;
-    }
-    main {
-      max-width: 800px;
-      margin: 40px auto;
       padding: 20px;
     }
-    h1 { color: #003366; margin: 0; }
-    h1 + p { margin-top: 8px; color: #eef3ff; }
-    h2 {
-      color: #003366;
-      border-bottom: 2px solid #e9eef5;
-      padding-bottom: 8px;
-      margin-top: 28px;
+
+    nav {
+      background-color: #1e5799;
+      text-align: center;
+      padding: 10px;
     }
-    section { margin-top: 18px; }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      margin: 0 15px;
+      font-weight: bold;
+    }
+
+    nav a:hover {
+      text-decoration: underline;
+    }
+
+    section {
+      padding: 30px;
+      max-width: 800px;
+      margin: auto;
+      background-color: white;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      border-radius: 10px;
+      margin-top: 20px;
+    }
+
+    h1, h2 {
+      color: #0a3d62;
+    }
+
     footer {
+      background-color: #0a3d62;
+      color: white;
       text-align: center;
       padding: 15px;
-      background-color: #f1f1f1;
+      margin-top: 30px;
       font-size: 0.9em;
-      color: #555;
-      margin-top: 40px;
     }
-    ul, ol { padding-inline-start: 1.2em; }
-    a { color: #0056b3; }
   </style>
 </head>
+
 <body>
+
   <header>
     <h1>📘 دليل المستخدم</h1>
-    <p>صفحة رسمية تم نشرها عبر GitHub Pages</p>
+    <p>صفحة رسمية تم إنشاؤها عبر GitHub Pages</p>
   </header>
 
-  <main>
-    <section>
-      <h2>مرحبًا بك</h2>
-      <p>مرحبًا بك في دليل المستخدم الرسمي. هذه الصفحة مُعدّة لتعرض معلومات وإرشادات واضحة للمستخدمين.</p>
-    </section>
+  <nav>
+    <a href="#welcome">الرئيسية</a>
+    <a href="#about">عن الدليل</a>
+    <a href="#usage">طريقة الاستخدام</a>
+  </nav>
 
-    <section>
-      <h2>عن الدليل</h2>
-      <p>يهدف هذا الدليل إلى مساعدتك في إجراء الإجراءات الأساسية بسرعة وسهولة.</p>
-    </section>
+  <section id="welcome">
+    <h2>مرحباً بك</h2>
+    <p>مرحباً بك في دليل المستخدم الرسمي. هذه الصفحة مخصصة لتوضيح الخطوات الأساسية لاستخدام الموقع بكل سهولة.</p>
+  </section>
 
-    <section>
-      <h2>طريقة الاستخدام</h2>
-      <ol>
-        <li>استعرض الأقسام المختلفة من هذا الدليل.</li>
-        <li>اتبع التعليمات الموضحة في كل قسم.</li>
-        <li>عند تحديث الصفحة، ارفع الملف إلى GitHub واعمل Commit ثم انتظر نشر Pages.</li>
-      </ol>
-    </section>
-  </main>
+  <section id="about">
+    <h2>عن الدليل</h2>
+    <p>يهدف هذا الدليل إلى مساعدة المستخدمين على فهم طريقة عمل GitHub Pages وخطوات نشر الصفحات عبر المستودعات.</p>
+  </section>
+
+  <section id="usage">
+    <h2>طريقة الاستخدام</h2>
+    <ol>
+      <li>افتح المستودع الخاص بك على GitHub.</li>
+      <li>قم بإنشاء ملف <code>index.html</code> أو تعديل الموجود.</li>
+      <li>احفظ التغييرات عبر زر <b>Commit changes</b>.</li>
+      <li>ادخل إلى إعدادات Pages وتحقق من ظهور الرابط الرسمي.</li>
+    </ol>
+  </section>
 
   <footer>
-    <p>© 2025 جميع الحقوق محفوظة</p>
+    <p>© 2025 جميع الحقوق محفوظة | تم التصميم بواسطة khalgethami-ai</p>
   </footer>
+
 </body>
 </html>
