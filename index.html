@@ -1,169 +1,129 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>دليل المستخدم</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>User Guide</title>
   <style>
     body {
-      font-family: "Tahoma", sans-serif;
+      font-family: "Tajawal", Arial, sans-serif;
+      background-color: #f8f9fa;
       margin: 0;
       padding: 0;
-      background-color: #f9fafc;
-      color: #333;
+      text-align: center;
+      direction: rtl;
     }
 
     header {
-      background-color: #0b3d91;
+      background-color: #004d99;
       color: white;
-      text-align: center;
-      padding: 1.5em 0;
+      padding: 20px;
+      font-size: 22px;
+      font-weight: bold;
     }
 
-    h1 {
-      margin: 0;
-      font-size: 1.6em;
+    .logo {
+      margin-top: 15px;
     }
 
     main {
-      max-width: 900px;
-      margin: 2em auto;
-      background: white;
-      padding: 2em;
-      border-radius: 10px;
-      box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+      padding: 40px 10px;
     }
 
-    h2 {
-      color: #0b3d91;
-      border-bottom: 2px solid #e0e0e0;
-      padding-bottom: 5px;
-    }
-
-    ul {
-      line-height: 1.8;
-    }
-
-    /* تصميم المجلدات الفخمة */
-    .folder-section {
-      margin-top: 2.5em;
+    .folder-container {
       display: flex;
+      justify-content: center;
       flex-wrap: wrap;
       gap: 20px;
-      justify-content: center;
     }
 
     .folder-card {
-      background: linear-gradient(to top right, #e8eefc, #ffffff);
-      border: 1px solid #c5d3f2;
-      border-radius: 12px;
-      width: 380px;
-      padding: 1.5em;
-      box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-      text-align: center;
+      background-color: white;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      padding: 20px;
+      width: 260px;
+      transition: transform 0.2s;
     }
 
     .folder-card:hover {
-      transform: translateY(-6px);
-      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+      transform: translateY(-5px);
     }
 
     .folder-icon {
-      font-size: 48px;
-      color: #0b3d91;
-      margin-bottom: 10px;
+      font-size: 50px;
+      color: #004d99;
     }
 
-    .folder-card h3 {
-      margin-top: 0;
-      color: #0b3d91;
-      font-size: 1.3em;
+    h3 {
+      margin-top: 15px;
+      font-size: 20px;
+      color: #004d99;
     }
 
-    .folder-card p {
-      color: #444;
-      font-size: 0.95em;
-      margin-bottom: 1em;
+    p {
+      color: #555;
+      font-size: 14px;
     }
 
     .btn {
       display: inline-block;
-      background-color: #0b3d91;
+      margin-top: 10px;
+      padding: 10px 15px;
+      background-color: #0078d7;
       color: white;
-      padding: 0.6em 1.2em;
-      border-radius: 6px;
       text-decoration: none;
-      font-weight: bold;
-      transition: background-color 0.3s;
+      border-radius: 6px;
+      font-size: 15px;
     }
 
     .btn:hover {
-      background-color: #062e6f;
-    }
-
-    /* تخصيص ألوان لكل مجلد */
-    .airbus {
-      background: linear-gradient(to top right, #e6f0ff, #ffffff);
-    }
-
-    .sepura {
-      background: linear-gradient(to top right, #f2f7ff, #ffffff);
+      background-color: #005fa3;
     }
 
     footer {
-      text-align: center;
-      font-size: 0.9em;
-      color: #777;
-      margin-top: 3em;
-      padding: 1em 0;
+      margin-top: 40px;
+      padding: 15px;
+      background-color: #004d99;
+      color: white;
+      font-size: 14px;
     }
   </style>
 </head>
 
 <body>
   <header>
-    <h1>دليل المستخدم الرسمي</h1>
+    دليل المستخدم العام
+    <div class="logo">
+      <!-- 🏷️ مكان الشعار -->
+      <p style="font-size:14px; margin-top:8px;">(يمكنك إضافة شعار الجهة هنا لاحقًا)</p>
+    </div>
   </header>
 
   <main>
-    <h2>مرحباً بك</h2>
-    <p>مرحباً بك في دليل المستخدم الرسمي. هذه الصفحة مخصصة لعرض معلومات وإرشادات واضحة للمستخدمين.</p>
+    <div class="folder-container">
 
-    <h2>عن الدليل</h2>
-    <p>يهدف هذا الدليل إلى مساعدتك في استخدام أجهزة الاتصالات بشكل صحيح وسريع.</p>
-
-    <h2>طريقة الاستخدام</h2>
-    <ul>
-      <li>تصفح الأقسام المختلفة من هذا الدليل.</li>
-      <li>اضغط على أيقونة المجلد لفتح الدليل المطلوب.</li>
-      <li>يمكنك لاحقاً رفع ملفات PDF داخل مجلد <code>pdfs</code> بنفس الأسماء المذكورة أدناه.</li>
-    </ul>
-
-    <h2>الأدلة الفنية</h2>
-    <div class="folder-section">
-
-      <!-- مجلد ايرباص -->
-      <div class="folder-card airbus">
-        <div class="folder-icon">📁</div>
-        <h3>أجهزة ايرباص (Airbus)</h3>
-        <p>دليل استخدام أجهزة ايرباص الرسمية.</p>
-        <a class="btn" href="pdfs/airbus-guide.pdf" target="_blank">📘 فتح دليل ايرباص</a>
-      </div>
-
-      <!-- مجلد سيبورا -->
+      <!-- 🟩 مجلد سيبورا -->
       <div class="folder-card sepura">
         <div class="folder-icon">📂</div>
         <h3>أجهزة سيبورا (Sepura)</h3>
         <p>دليل استخدام أجهزة سيبورا الرسمية.</p>
-        <a class="btn" href="pdfs/sepura-guide.pdf" target="_blank">📗 فتح دليل سيبورا</a>
+        <a class="btn" href="دليل%20استخدام%20جهاز%20سيبورا.pdf" target="_blank">📗 فتح دليل سيبورا</a>
+      </div>
+
+      <!-- 🟦 مجلد إيرباص (سيُضاف لاحقًا) -->
+      <div class="folder-card airbus">
+        <div class="folder-icon">📁</div>
+        <h3>أجهزة إيرباص (Airbus)</h3>
+        <p>دليل استخدام أجهزة إيرباص — سيتم إضافته قريبًا.</p>
+        <a class="btn" href="#" onclick="alert('الملف غير متوفر حالياً')">📄 قيد الرفع</a>
       </div>
 
     </div>
   </main>
 
   <footer>
-    <p>© جميع الحقوق محفوظة 2025</p>
+    جميع الحقوق محفوظة © 2025
   </footer>
 </body>
 </html>
