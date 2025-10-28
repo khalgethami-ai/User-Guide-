@@ -3,50 +3,55 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>الدخول إلى الدليل الفني للأجهزة</title>
+  <title>تسجيل الدخول</title>
   <style>
     body {
-      font-family: "Tahoma", sans-serif;
-      background-color: #f5f6fa;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
+      font-family: "Arial", sans-serif;
+      background-color: #f2f4f8;
       direction: rtl;
       text-align: center;
+      margin: 0;
+      padding: 0;
     }
     .login-box {
       background: white;
-      padding: 40px;
-      border-radius: 12px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.15);
-      width: 320px;
+      width: 90%;
+      max-width: 400px;
+      margin: 120px auto;
+      padding: 40px 25px;
+      border-radius: 10px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
     }
     h2 {
-      margin-bottom: 25px;
+      margin-bottom: 20px;
       color: #333;
     }
-    input[type="password"] {
-      width: 100%;
+    input {
+      width: 80%;
       padding: 10px;
-      margin-bottom: 20px;
-      border-radius: 6px;
       border: 1px solid #ccc;
-      font-size: 16px;
+      border-radius: 5px;
+      margin-bottom: 15px;
       text-align: center;
+      font-size: 16px;
     }
     button {
-      width: 100%;
-      padding: 10px;
-      background-color: #007bff;
-      border: none;
+      background-color: #007BFF;
       color: white;
+      border: none;
+      padding: 10px 25px;
       border-radius: 6px;
       font-size: 16px;
       cursor: pointer;
+      transition: background 0.3s;
     }
     button:hover {
       background-color: #0056b3;
+    }
+    .message {
+      margin-top: 10px;
+      color: red;
+      font-size: 14px;
     }
   </style>
 </head>
@@ -54,25 +59,25 @@
 
   <div class="login-box">
     <h2>رمز الدخول</h2>
-    <input type="password" id="accessCode" placeholder="أدخل الرمز هنا">
-    <button onclick="checkCode()">دخول</button>
+    <input type="password" id="code" placeholder="أدخل الرمز هنا">
+    <br>
+    <button onclick="login()">دخول</button>
+    <div class="message" id="msg"></div>
   </div>
 
   <script>
-    function checkCode() {
-      const input = document.getElementById("accessCode").value.trim();
-      const correctCode = "MOI2025";
-
-      if (input === correctCode) {
-        alert("✅ تم التحقق بنجاح، سيتم نقلك الآن إلى الصفحة الرئيسية...");
-        localStorage.setItem("authenticated", "true");
+    function login() {
+      const code = document.getElementById('code').value;
+      const msg = document.getElementById('msg');
+      if (code === 'MOI2025') {
+        sessionStorage.setItem('loggedIn', 'true');
+        msg.style.color = 'green';
+        msg.textContent = 'تم الدخول بنجاح...';
         setTimeout(() => {
-          window.location.href = "index.html";
-        }, 1000);
-      } else if (input === "") {
-        alert("⚠️ الرجاء إدخال الرمز أولاً.");
+          window.location.href = 'guide.html';
+        }, 1200);
       } else {
-        alert("❌ الرمز غير صحيح. يرجى المحاولة مرة أخرى.");
+        msg.textContent = 'رمز الدخول غير صحيح، حاول مرة أخرى.';
       }
     }
   </script>
