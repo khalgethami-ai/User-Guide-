@@ -3,12 +3,13 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>صفحة الدخول</title>
+  <title>تسجيل الدخول</title>
   <style>
     body {
-      font-family: "Tajawal", sans-serif;
-      background-color: #f8f9fa;
+      font-family: "Tahoma", sans-serif;
+      background-color: #f2f4f8;
       display: flex;
+      flex-direction: column;
       justify-content: center;
       align-items: center;
       height: 100vh;
@@ -16,79 +17,76 @@
     }
     .login-box {
       background-color: white;
-      padding: 40px;
+      padding: 40px 50px;
       border-radius: 10px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
-      width: 320px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.1);
       text-align: center;
+      width: 300px;
     }
     h2 {
-      margin-bottom: 25px;
       color: #333;
+      margin-bottom: 25px;
     }
-    input {
-      width: 90%;
-      padding: 10px;
-      margin: 10px 0;
+    input[type="password"] {
+      width: 100%;
+      padding: 12px;
+      margin-bottom: 20px;
       border: 1px solid #ccc;
       border-radius: 6px;
       text-align: center;
-      font-size: 15px;
-    }
-    button {
-      background-color: #0078D7;
-      color: white;
-      border: none;
-      padding: 10px 25px;
-      border-radius: 6px;
-      cursor: pointer;
-      margin-top: 10px;
       font-size: 16px;
     }
-    button:hover {
-      background-color: #005fa3;
+    button {
+      background-color: #007bff;
+      color: white;
+      border: none;
+      padding: 12px 25px;
+      border-radius: 6px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background-color 0.3s;
     }
-    .note {
-      font-size: 13px;
+    button:hover {
+      background-color: #0056b3;
+    }
+    .hint {
+      margin-top: 15px;
       color: #555;
-      margin-top: 10px;
+      font-size: 14px;
     }
   </style>
 </head>
 <body>
-
   <div class="login-box">
-    <h2>تسجيل الدخول</h2>
-    <input type="text" id="userId" placeholder="أدخل المعرّف الخاص بك">
-    <input type="password" id="accessCode" placeholder="أدخل رمز الدخول">
-    <button onclick="checkCode()">دخول</button>
-    <p class="note">يرجى التأكد من صحة المعرّف والرمز قبل الدخول</p>
+    <h2>أدخل رمز الدخول</h2>
+    <input type="password" id="accessCode" placeholder="رمز الدخول">
+    <button onclick="checkAccess()">دخول</button>
+    <div class="hint">
+      <a href="#" onclick="showHint()">عرض تلميح</a>
+    </div>
   </div>
 
   <script>
-    function checkCode() {
-      const code = document.getElementById("accessCode").value.trim();
-      const userId = document.getElementById("userId").value.trim();
-
-      if (code === "MOI2025" && userId !== "") {
-        localStorage.setItem("loginTime", new Date().getTime());
-        localStorage.setItem("userId", userId);
-        window.location.href = "guide.html"; // الانتقال للصفحة التالية
+    function checkAccess() {
+      const code = document.getElementById('accessCode').value;
+      if (code === "MOI2025") {
+        localStorage.setItem("accessGranted", "true");
+        window.location.href = "guide.html";
       } else {
-        alert("رمز الدخول أو المعرّف غير صحيح، يرجى التحقق والمحاولة مرة أخرى.");
+        alert("رمز الدخول غير صحيح ❌");
       }
     }
 
-    // تسجيل الخروج التلقائي بعد 5 دقائق
-    setInterval(() => {
-      const loginTime = localStorage.getItem("loginTime");
-      if (loginTime && new Date().getTime() - loginTime > 5 * 60 * 1000) {
-        localStorage.clear();
-        alert("انتهى وقت الجلسة. تم تسجيل خروجك تلقائيًا.");
-        window.location.href = "login.html";
-      }
-    }, 10000);
-  </script>
+    function showHint() {
+      alert("الرمز مكون من 6 أحرف وأرقام ويبدأ بـ M");
+    }
 
+    // حماية الدخول المباشر للصفحة
+    if (localStorage.getItem("accessGranted") === "true") {
+      // السماح بالمتابعة
+    } else {
+      console.log("لا يمكن الدخول بدون الرمز");
+    }
+  </script>
 </body>
 </html>
