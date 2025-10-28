@@ -6,45 +6,140 @@
   <title>الدليل الفني للأجهزة</title>
   <style>
     body {
-      font-family: 'Tahoma', sans-serif;
+      font-family: "Tajawal", sans-serif;
       background-color: #f4f6f8;
+      color: #222;
+      margin: 0;
+      padding: 0;
+      direction: rtl;
+    }
+
+    header {
+      background-color: #0078D7;
+      color: white;
       text-align: center;
-      padding: 50px;
-      color: #333;
-    }
-    h1 {
-      color: #003366;
-    }
-    .folder {
-      background-color: white;
-      border-radius: 8px;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-      padding: 20px;
-      margin: 20px auto;
-      width: 80%;
-      max-width: 400px;
-    }
-    a {
-      text-decoration: none;
-      color: #0066cc;
+      padding: 20px 0;
+      font-size: 22px;
       font-weight: bold;
+      letter-spacing: 1px;
     }
-    a:hover {
-      color: #004c99;
+
+    .content {
+      max-width: 750px;
+      margin: 40px auto;
+      background-color: #fff;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      padding: 30px;
+      text-align: center;
+    }
+
+    h2 {
+      color: #0078D7;
+      margin-bottom: 25px;
+    }
+
+    a.guide-link {
+      display: block;
+      background-color: #0078D7;
+      color: white;
+      text-decoration: none;
+      padding: 14px;
+      margin: 10px auto;
+      border-radius: 6px;
+      width: 80%;
+      transition: 0.3s;
+      font-size: 17px;
+    }
+
+    a.guide-link:hover {
+      background-color: #005fa3;
+    }
+
+    .footer {
+      text-align: center;
+      color: #666;
+      font-size: 14px;
+      margin-top: 40px;
+    }
+
+    .counter {
+      text-align: center;
+      color: #444;
+      font-size: 15px;
+      margin-top: 15px;
+    }
+
+    .logout-btn {
+      display: inline-block;
+      background-color: #dc3545;
+      color: white;
+      padding: 10px 20px;
+      margin-top: 20px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 15px;
+    }
+
+    .logout-btn:hover {
+      background-color: #b02a37;
     }
   </style>
 </head>
 <body>
-  <h1>الدليل الفني للأجهزة</h1>
-  <p>يرجى اختيار الدليل المطلوب:</p>
 
-  <div class="folder">
-    <a href="دليل استخدام اجهزة ايرباص.pdf" target="_blank">📘 دليل استخدام أجهزة إيرباص</a>
+  <header>الدليل الفني للأجهزة</header>
+
+  <div class="content">
+    <h2>مرحبًا بك <span id="userName"></span></h2>
+    <p>اختر أحد الأدلة التالية للاطلاع:</p>
+
+    <a href="airbus.pdf" target="_blank" class="guide-link">📘 دليل استخدام أجهزة إيرباص</a>
+    <a href="sepura.pdf" target="_blank" class="guide-link">📗 دليل استخدام جهاز سيبورا</a>
+
+    <div class="counter">
+      عدد الزيارات: <span id="visitCount">0</span>
+    </div>
+
+    <button class="logout-btn" onclick="logout()">تسجيل الخروج</button>
   </div>
 
-  <div class="folder">
-    <a href="دليل استخدام جهاز سيبورا.pdf" target="_blank">📗 دليل استخدام جهاز سيبورا</a>
+  <div class="footer">
+    © جميع الحقوق محفوظة - 2025
   </div>
+
+  <script>
+    // التحقق من تسجيل الدخول
+    const loginTime = localStorage.getItem("loginTime");
+    const userId = localStorage.getItem("userId");
+
+    if (!loginTime || !userId) {
+      alert("يجب تسجيل الدخول أولاً.");
+      window.location.href = "login.html";
+    } else {
+      document.getElementById("userName").textContent = userId;
+    }
+
+    // عداد الزيارات
+    let count = localStorage.getItem("visitCount") || 0;
+    count++;
+    localStorage.setItem("visitCount", count);
+    document.getElementById("visitCount").textContent = count;
+
+    // تسجيل خروج تلقائي بعد 5 دقائق
+    setTimeout(() => {
+      localStorage.removeItem("loginTime");
+      alert("انتهت الجلسة. تم تسجيل خروجك تلقائيًا.");
+      window.location.href = "login.html";
+    }, 5 * 60 * 1000);
+
+    // زر تسجيل الخروج اليدوي
+    function logout() {
+      localStorage.clear();
+      window.location.href = "login.html";
+    }
+  </script>
 
 </body>
 </html>
