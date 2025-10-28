@@ -3,179 +3,93 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>📘 الدليل الفني للأجهزة</title>
+  <title>الدليل الفني للأجهزة</title>
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&display=swap');
-
+    @import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@400;600;700&display=swap');
     body {
       font-family: 'Tajawal', sans-serif;
-      background: linear-gradient(180deg, #f9fafb 0%, #e2e8f0 100%);
+      background-color: #f8fafc;
       margin: 0;
       padding: 0;
+      color: #1e293b;
       text-align: center;
-      color: #1e293b;
     }
-
     header {
-      background: #1e293b;
+      background-color: #1e40af;
       color: white;
-      padding: 20px 0;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+      padding: 20px;
+      font-size: 22px;
+      font-weight: 700;
     }
-
-    header h1 {
-      margin: 0;
-      font-size: 28px;
-    }
-
-    header p {
-      margin: 6px 0 0;
-      font-size: 15px;
-      opacity: 0.85;
-    }
-
-    .container {
+    .guides {
       display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 40px;
-      margin: 60px auto;
-      max-width: 1000px;
-      padding: 0 20px;
-    }
-
-    .card {
-      background: white;
-      border-radius: 16px;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.08);
-      width: 420px;
-      padding: 30px 25px;
-      transition: all 0.3s ease;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .card:hover {
-      transform: translateY(-6px);
-      box-shadow: 0 6px 18px rgba(0,0,0,0.15);
-    }
-
-    .card::before {
-      content: "";
-      position: absolute;
-      top: 0; left: 0;
-      width: 100%; height: 4px;
-      background: linear-gradient(90deg, #2563eb, #1e40af);
-    }
-
-    .card h2 {
-      font-size: 24px;
-      margin: 10px 0;
-      display: flex;
+      flex-direction: column;
       align-items: center;
-      justify-content: center;
-      gap: 10px;
-      color: #1e40af;
+      margin-top: 40px;
     }
-
-    .card p {
-      font-size: 16px;
-      color: #475569;
-      margin: 15px 0 25px;
-    }
-
-    .logo {
-      width: 40px;
-      height: 40px;
-      border-radius: 8px;
-      object-fit: contain;
-      background-color: #f1f5f9;
-      padding: 4px;
-    }
-
-    .btn {
-      display: inline-block;
-      text-decoration: none;
-      padding: 12px 28px;
-      background: #1e40af;
-      color: white;
-      font-weight: 500;
-      border-radius: 8px;
-      transition: background 0.3s ease;
-    }
-
-    .btn:hover {
-      background: #1d4ed8;
-    }
-
-    .counter {
-      margin: 40px auto 60px;
-      background: #f1f5f9;
-      display: inline-block;
-      padding: 12px 28px;
+    .guide {
+      background: white;
+      width: 90%;
+      max-width: 500px;
+      padding: 20px;
       border-radius: 12px;
-      font-size: 17px;
-      color: #1e293b;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      margin: 10px 0;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
     }
-
-    footer {
-      background: #1e293b;
-      color: #e2e8f0;
-      font-size: 13px;
-      padding: 15px 0;
+    a {
+      text-decoration: none;
+      color: #1d4ed8;
+      font-weight: 600;
+      font-size: 18px;
     }
-
+    .footer {
+      margin-top: 40px;
+      color: #64748b;
+      font-size: 14px;
+    }
   </style>
 </head>
 <body>
 
-  <header>
-    <h1>📘 الدليل الفني للأجهزة</h1>
-    <p>اختر أحد الأدلة أدناه للاطلاع على تعليمات الاستخدام</p>
-  </header>
+  <script>
+    // حماية الصفحة
+    if (localStorage.getItem('authenticated') !== 'true') {
+      window.location.href = 'index.html';
+    } else {
+      // تسجيل الخروج بعد 10 دقائق
+      const loginTime = localStorage.getItem("loginTime");
+      const elapsed = Date.now() - loginTime;
+      const maxTime = 10 * 60 * 1000;
+      if (elapsed >= maxTime) {
+        localStorage.removeItem("authenticated");
+        localStorage.removeItem("loginTime");
+        window.location.href = "index.html";
+      }
+    }
+  </script>
 
-  <div class="container">
-    <!-- Sepura -->
-    <div class="card">
-      <h2>
-        <img src="https://upload.wikimedia.org/wikipedia/commons/d/d3/Sepura_logo.svg" alt="Sepura Logo" class="logo">
-        Sepura
-      </h2>
-      <p>دليل الاستخدام الفني لأجهزة سيبورا</p>
-      <a href="sepura.pdf" target="_blank" class="btn">عرض الدليل</a>
+  <header>📘 الدليل الفني للأجهزة</header>
+
+  <div class="guides">
+    <div class="guide">
+      <a href="دليل استخدام اجهزة ايرباص.pdf" target="_blank">📘 دليل استخدام أجهزة إيرباص</a>
     </div>
-
-    <!-- Airbus -->
-    <div class="card">
-      <h2>
-        <img src="https://upload.wikimedia.org/wikipedia/commons/5/59/Airbus_Group_logo.svg" alt="Airbus Logo" class="logo">
-        Airbus
-      </h2>
-      <p>دليل الاستخدام الفني لأجهزة إيرباص</p>
-      <a href="airbus.pdf" target="_blank" class="btn">عرض الدليل</a>
+    <div class="guide">
+      <a href="دليل استخدام اجهزة سيبورا.pdf" target="_blank">📗 دليل استخدام أجهزة سيبورا</a>
     </div>
   </div>
 
-  <div class="counter">
-    👁️ عدد الزيارات: <span id="visits">0</span>
+  <div class="footer">
+    🔢 عدد الزيارات: <span id="counter">0</span>
   </div>
-
-  <footer>
-    جميع الحقوق محفوظة © 2025
-  </footer>
 
   <script>
-    // عداد الزيارات باستخدام CountAPI
-    fetch('https://api.countapi.xyz/hit/khalgethami-ai/User-Guide-Page')
-      .then(res => res.json())
-      .then(data => {
-        document.getElementById('visits').textContent = data.value.toLocaleString();
-      })
-      .catch(err => {
-        console.error('خطأ في تحميل العداد:', err);
-        document.getElementById('visits').textContent = '—';
-      });
+    // عداد الزيارات
+    let count = localStorage.getItem('visitCount');
+    count = count ? parseInt(count) + 1 : 1;
+    localStorage.setItem('visitCount', count);
+    document.getElementById('counter').textContent = count;
   </script>
+
 </body>
 </html>
