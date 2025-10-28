@@ -3,115 +3,88 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>تسجيل الدخول</title>
+  <title>صفحة الدخول</title>
   <style>
     body {
-      font-family: 'Tahoma', sans-serif;
-      background-color: #f5f7fa;
-      color: #003366;
-      margin: 0;
+      font-family: "Tajawal", sans-serif;
+      background-color: #f8f9fa;
       display: flex;
-      flex-direction: column;
-      align-items: center;
       justify-content: center;
+      align-items: center;
       height: 100vh;
+      margin: 0;
+    }
+    .login-box {
+      background-color: white;
+      padding: 40px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      width: 320px;
       text-align: center;
     }
-
-    .login-box {
-      background: white;
-      padding: 30px;
-      border-radius: 12px;
-      box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
-      width: 90%;
-      max-width: 380px;
-    }
-
-    h1 {
+    h2 {
       margin-bottom: 25px;
-      color: #003366;
+      color: #333;
     }
-
-    input[type="password"] {
-      width: 80%;
+    input {
+      width: 90%;
       padding: 10px;
+      margin: 10px 0;
       border: 1px solid #ccc;
       border-radius: 6px;
-      font-size: 1em;
       text-align: center;
+      font-size: 15px;
     }
-
     button {
-      margin-top: 20px;
-      background-color: #003366;
+      background-color: #0078D7;
       color: white;
       border: none;
+      padding: 10px 25px;
       border-radius: 6px;
-      padding: 10px 20px;
-      font-size: 1em;
       cursor: pointer;
-      transition: background 0.3s;
-    }
-
-    button:hover {
-      background-color: #0055aa;
-    }
-
-    .hint {
-      margin-top: 15px;
-      color: #555;
-      font-size: 0.9em;
-      cursor: pointer;
-      text-decoration: underline;
-    }
-
-    .error {
-      color: red;
       margin-top: 10px;
-      font-size: 0.9em;
-      display: none;
+      font-size: 16px;
+    }
+    button:hover {
+      background-color: #005fa3;
+    }
+    .note {
+      font-size: 13px;
+      color: #555;
+      margin-top: 10px;
     }
   </style>
 </head>
 <body>
 
   <div class="login-box">
-    <h1>تسجيل الدخول</h1>
-    <p>الرجاء إدخال الرمز الخاص للوصول إلى النظام</p>
-    <input type="password" id="accessCode" placeholder="••••••••" />
-    <div>
-      <button onclick="checkCode()">دخول</button>
-    </div>
-    <div class="hint" onclick="showHint()">ما هو هذا الرمز؟</div>
-    <div class="error" id="errorMessage">الرمز غير صحيح، حاول مرة أخرى.</div>
+    <h2>تسجيل الدخول</h2>
+    <input type="text" id="userId" placeholder="أدخل المعرّف الخاص بك">
+    <input type="password" id="accessCode" placeholder="أدخل رمز الدخول">
+    <button onclick="checkCode()">دخول</button>
+    <p class="note">يرجى التأكد من صحة المعرّف والرمز قبل الدخول</p>
   </div>
 
   <script>
-    const correctCode = "MOI2025";
-
     function checkCode() {
-      const inputCode = document.getElementById("accessCode").value.trim();
-      const error = document.getElementById("errorMessage");
+      const code = document.getElementById("accessCode").value.trim();
+      const userId = document.getElementById("userId").value.trim();
 
-      if (inputCode === correctCode) {
-        localStorage.setItem("authorized", "true");
-        localStorage.setItem("loginTime", Date.now());
-        window.location.href = "index.html";
+      if (code === "MOI2025" && userId !== "") {
+        localStorage.setItem("loginTime", new Date().getTime());
+        localStorage.setItem("userId", userId);
+        window.location.href = "guide.html"; // الانتقال للصفحة التالية
       } else {
-        error.style.display = "block";
+        alert("رمز الدخول أو المعرّف غير صحيح، يرجى التحقق والمحاولة مرة أخرى.");
       }
     }
 
-    function showHint() {
-      alert("الرمز مخصص للوصول إلى الدليل الفني للأجهزة المصرح بها فقط.");
-    }
-
-    // تسجيل خروج تلقائي بعد 15 دقيقة
-    const logoutTimer = 15 * 60 * 1000;
+    // تسجيل الخروج التلقائي بعد 5 دقائق
     setInterval(() => {
       const loginTime = localStorage.getItem("loginTime");
-      if (loginTime && Date.now() - loginTime > logoutTimer) {
-        localStorage.removeItem("authorized");
+      if (loginTime && new Date().getTime() - loginTime > 5 * 60 * 1000) {
+        localStorage.clear();
+        alert("انتهى وقت الجلسة. تم تسجيل خروجك تلقائيًا.");
         window.location.href = "login.html";
       }
     }, 10000);
