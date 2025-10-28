@@ -1,81 +1,81 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="ar">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>تسجيل الدخول</title>
+  <title>الدخول إلى الدليل الفني للأجهزة</title>
   <style>
     body {
-      background-color: #1e1e1e;
-      font-family: "Cairo", sans-serif;
-      color: #fff;
+      font-family: "Tahoma", sans-serif;
+      background-color: #f5f6fa;
       display: flex;
       justify-content: center;
       align-items: center;
       height: 100vh;
-      margin: 0;
-    }
-
-    .login-box {
-      background-color: #2a2a2a;
-      padding: 40px;
-      border-radius: 10px;
-      box-shadow: 0 0 15px rgba(0,0,0,0.4);
+      direction: rtl;
       text-align: center;
     }
-
+    .login-box {
+      background: white;
+      padding: 40px;
+      border-radius: 12px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.15);
+      width: 320px;
+    }
+    h2 {
+      margin-bottom: 25px;
+      color: #333;
+    }
     input[type="password"] {
       width: 100%;
-      padding: 12px;
-      margin: 10px 0;
-      border: none;
-      border-radius: 5px;
-      text-align: center;
+      padding: 10px;
+      margin-bottom: 20px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
       font-size: 16px;
+      text-align: center;
     }
-
     button {
       width: 100%;
-      background-color: #0078d7;
-      color: #fff;
+      padding: 10px;
+      background-color: #007bff;
       border: none;
-      padding: 12px;
+      color: white;
+      border-radius: 6px;
       font-size: 16px;
-      border-radius: 5px;
       cursor: pointer;
-      margin-top: 10px;
     }
-
     button:hover {
-      background-color: #005fa3;
-    }
-
-    .error {
-      color: #ff6666;
-      margin-top: 10px;
+      background-color: #0056b3;
     }
   </style>
 </head>
 <body>
+
   <div class="login-box">
-    <h2>تسجيل الدخول</h2>
-    <input type="password" id="password" placeholder="أدخل رمز الدخول">
-    <button onclick="login()">دخول</button>
-    <div class="error" id="error"></div>
+    <h2>رمز الدخول</h2>
+    <input type="password" id="accessCode" placeholder="أدخل الرمز هنا">
+    <button onclick="checkCode()">دخول</button>
   </div>
 
   <script>
-    function login() {
-      const password = document.getElementById("password").value.trim();
+    function checkCode() {
+      const input = document.getElementById("accessCode").value.trim();
+      const correctCode = "MOI2025";
 
-      if (password === "MOI2025") {
-        // ✅ حفظ حالة الدخول في LocalStorage
+      if (input === correctCode) {
+        alert("✅ تم التحقق بنجاح، سيتم نقلك الآن إلى الصفحة الرئيسية...");
         localStorage.setItem("authenticated", "true");
-        window.location.href = "guide.html";
+        setTimeout(() => {
+          window.location.href = "index.html";
+        }, 1000);
+      } else if (input === "") {
+        alert("⚠️ الرجاء إدخال الرمز أولاً.");
       } else {
-        document.getElementById("error").textContent = "رمز الدخول غير صحيح.";
+        alert("❌ الرمز غير صحيح. يرجى المحاولة مرة أخرى.");
       }
     }
   </script>
+
 </body>
 </html>
