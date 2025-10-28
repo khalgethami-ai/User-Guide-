@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>الدليل</title>
+  <title>الصفحة الرئيسية</title>
   <style>
     body {
       background-color: #1e1e1e;
@@ -39,14 +39,13 @@
   <div class="message" id="message"></div>
 
   <script>
-    // التحقق من حالة الدخول
     const isAuthenticated = localStorage.getItem("authenticated");
 
     if (isAuthenticated === "true") {
-      // ✅ إذا المستخدم مسجل الدخول، انتقل مباشرة إلى صفحة الأدلة
+      // ✅ تسجيل دخول ناجح → الانتقال إلى صفحة الأدلة
       window.location.href = "guide.html";
     } else {
-      // ❌ إذا لم يسجل الدخول، اعرض رسالة
+      // ❌ لم يسجل الدخول
       document.getElementById("message").innerHTML = `
         <p>يجب تسجيل الدخول أولاً.</p>
         <a href="login.html">الذهاب إلى صفحة الدخول</a>
