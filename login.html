@@ -7,44 +7,52 @@
   <style>
     body {
       background-color: #1e1e1e;
-      color: #fff;
       font-family: "Cairo", sans-serif;
+      color: #fff;
       display: flex;
-      flex-direction: column;
       justify-content: center;
       align-items: center;
       height: 100vh;
       margin: 0;
     }
+
     .login-box {
-      background: #2a2a2a;
-      padding: 30px;
-      border-radius: 15px;
+      background-color: #2a2a2a;
+      padding: 40px;
+      border-radius: 10px;
       box-shadow: 0 0 15px rgba(0,0,0,0.4);
       text-align: center;
-      width: 300px;
     }
+
     input[type="password"] {
       width: 100%;
-      padding: 10px;
-      margin-top: 10px;
+      padding: 12px;
+      margin: 10px 0;
       border: none;
       border-radius: 5px;
-      outline: none;
+      text-align: center;
       font-size: 16px;
     }
+
     button {
+      width: 100%;
       background-color: #0078d7;
+      color: #fff;
       border: none;
-      color: white;
-      padding: 10px 20px;
-      margin-top: 15px;
+      padding: 12px;
+      font-size: 16px;
       border-radius: 5px;
       cursor: pointer;
-      font-size: 16px;
+      margin-top: 10px;
     }
+
     button:hover {
       background-color: #005fa3;
+    }
+
+    .error {
+      color: #ff6666;
+      margin-top: 10px;
     }
   </style>
 </head>
@@ -53,16 +61,19 @@
     <h2>تسجيل الدخول</h2>
     <input type="password" id="password" placeholder="أدخل رمز الدخول">
     <button onclick="login()">دخول</button>
+    <div class="error" id="error"></div>
   </div>
 
   <script>
     function login() {
-      const password = document.getElementById("password").value;
+      const password = document.getElementById("password").value.trim();
+
       if (password === "MOI2025") {
+        // ✅ حفظ حالة الدخول في LocalStorage
         localStorage.setItem("authenticated", "true");
-        window.location.href = "guide.html"; // تأكد أن اسم الملف صحيح
+        window.location.href = "guide.html";
       } else {
-        alert("رمز الدخول غير صحيح");
+        document.getElementById("error").textContent = "رمز الدخول غير صحيح.";
       }
     }
   </script>
