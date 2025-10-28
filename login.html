@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>تسجيل الدخول</title>
+  <style>
+    body {
+      font-family: 'Tahoma', sans-serif;
+      background-color: #f5f7fa;
+      color: #003366;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      text-align: center;
+    }
+
+    .login-box {
+      background: white;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+      width: 90%;
+      max-width: 380px;
+    }
+
+    h1 {
+      margin-bottom: 25px;
+      color: #003366;
+    }
+
+    input[type="password"] {
+      width: 80%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 1em;
+      text-align: center;
+    }
+
+    button {
+      margin-top: 20px;
+      background-color: #003366;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      padding: 10px 20px;
+      font-size: 1em;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    button:hover {
+      background-color: #0055aa;
+    }
+
+    .hint {
+      margin-top: 15px;
+      color: #555;
+      font-size: 0.9em;
+      cursor: pointer;
+      text-decoration: underline;
+    }
+
+    .error {
+      color: red;
+      margin-top: 10px;
+      font-size: 0.9em;
+      display: none;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="login-box">
+    <h1>تسجيل الدخول</h1>
+    <p>الرجاء إدخال الرمز الخاص للوصول إلى النظام</p>
+    <input type="password" id="accessCode" placeholder="••••••••" />
+    <div>
+      <button onclick="checkCode()">دخول</button>
+    </div>
+    <div class="hint" onclick="showHint()">ما هو هذا الرمز؟</div>
+    <div class="error" id="errorMessage">الرمز غير صحيح، حاول مرة أخرى.</div>
+  </div>
+
+  <script>
+    const correctCode = "MOI2025";
+
+    function checkCode() {
+      const inputCode = document.getElementById("accessCode").value.trim();
+      const error = document.getElementById("errorMessage");
+
+      if (inputCode === correctCode) {
+        localStorage.setItem("authorized", "true");
+        localStorage.setItem("loginTime", Date.now());
+        window.location.href = "index.html";
+      } else {
+        error.style.display = "block";
+      }
+    }
+
+    function showHint() {
+      alert("الرمز مخصص للوصول إلى الدليل الفني للأجهزة المصرح بها فقط.");
+    }
+
+    // تسجيل خروج تلقائي بعد 15 دقيقة
+    const logoutTimer = 15 * 60 * 1000;
+    setInterval(() => {
+      const loginTime = localStorage.getItem("loginTime");
+      if (loginTime && Date.now() - loginTime > logoutTimer) {
+        localStorage.removeItem("authorized");
+        window.location.href = "login.html";
+      }
+    }, 10000);
+  </script>
+
+</body>
+</html>
