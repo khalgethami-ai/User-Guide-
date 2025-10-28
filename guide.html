@@ -1,145 +1,94 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="ar">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>الدليل الفني للأجهزة</title>
   <style>
     body {
-      font-family: "Tajawal", sans-serif;
-      background-color: #f4f6f8;
-      color: #222;
-      margin: 0;
-      padding: 0;
+      font-family: "Arial", sans-serif;
+      background-color: #f9f9f9;
+      color: #333;
       direction: rtl;
-    }
-
-    header {
-      background-color: #0078D7;
-      color: white;
       text-align: center;
-      padding: 20px 0;
-      font-size: 22px;
-      font-weight: bold;
-      letter-spacing: 1px;
+      margin: 0;
+      padding: 20px;
     }
-
-    .content {
-      max-width: 750px;
-      margin: 40px auto;
-      background-color: #fff;
+    h1 {
+      margin-bottom: 30px;
+    }
+    .pdf-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 25px;
+    }
+    .pdf-box {
+      background: white;
+      border: 1px solid #ccc;
       border-radius: 10px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
-      padding: 30px;
-      text-align: center;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      width: 45%;
+      min-width: 300px;
+      padding: 15px;
+      transition: transform 0.2s;
     }
-
-    h2 {
-      color: #0078D7;
-      margin-bottom: 25px;
+    .pdf-box:hover {
+      transform: scale(1.03);
     }
-
-    a.guide-link {
-      display: block;
-      background-color: #0078D7;
+    iframe {
+      width: 100%;
+      height: 450px;
+      border: none;
+      border-radius: 5px;
+    }
+    a.btn {
+      display: inline-block;
+      margin-top: 12px;
+      padding: 8px 16px;
+      background-color: #007BFF;
       color: white;
       text-decoration: none;
-      padding: 14px;
-      margin: 10px auto;
-      border-radius: 6px;
-      width: 80%;
-      transition: 0.3s;
-      font-size: 17px;
+      border-radius: 5px;
+      transition: background 0.3s;
     }
-
-    a.guide-link:hover {
-      background-color: #005fa3;
+    a.btn:hover {
+      background-color: #0056b3;
     }
-
-    .footer {
-      text-align: center;
-      color: #666;
-      font-size: 14px;
-      margin-top: 40px;
-    }
-
-    .counter {
-      text-align: center;
-      color: #444;
-      font-size: 15px;
-      margin-top: 15px;
-    }
-
-    .logout-btn {
-      display: inline-block;
-      background-color: #dc3545;
-      color: white;
-      padding: 10px 20px;
-      margin-top: 20px;
-      border: none;
-      border-radius: 6px;
-      cursor: pointer;
-      font-size: 15px;
-    }
-
-    .logout-btn:hover {
-      background-color: #b02a37;
+    @media (max-width: 800px) {
+      .pdf-box { width: 100%; }
     }
   </style>
 </head>
 <body>
 
-  <header>الدليل الفني للأجهزة</header>
-
-  <div class="content">
-    <h2>مرحبًا بك <span id="userName"></span></h2>
-    <p>اختر أحد الأدلة التالية للاطلاع:</p>
-
-    <a href="airbus.pdf" target="_blank" class="guide-link">📘 دليل استخدام أجهزة إيرباص</a>
-    <a href="sepura.pdf" target="_blank" class="guide-link">📗 دليل استخدام جهاز سيبورا</a>
-
-    <div class="counter">
-      عدد الزيارات: <span id="visitCount">0</span>
-    </div>
-
-    <button class="logout-btn" onclick="logout()">تسجيل الخروج</button>
-  </div>
-
-  <div class="footer">
-    © جميع الحقوق محفوظة - 2025
-  </div>
-
   <script>
-    // التحقق من تسجيل الدخول
-    const loginTime = localStorage.getItem("loginTime");
-    const userId = localStorage.getItem("userId");
-
-    if (!loginTime || !userId) {
-      alert("يجب تسجيل الدخول أولاً.");
-      window.location.href = "login.html";
-    } else {
-      document.getElementById("userName").textContent = userId;
-    }
-
-    // عداد الزيارات
-    let count = localStorage.getItem("visitCount") || 0;
-    count++;
-    localStorage.setItem("visitCount", count);
-    document.getElementById("visitCount").textContent = count;
-
-    // تسجيل خروج تلقائي بعد 5 دقائق
-    setTimeout(() => {
-      localStorage.removeItem("loginTime");
-      alert("انتهت الجلسة. تم تسجيل خروجك تلقائيًا.");
-      window.location.href = "login.html";
-    }, 5 * 60 * 1000);
-
-    // زر تسجيل الخروج اليدوي
-    function logout() {
-      localStorage.clear();
+    // منع الوصول المباشر بدون تسجيل الدخول
+    if (sessionStorage.getItem("loggedIn") !== "true") {
       window.location.href = "login.html";
     }
   </script>
+
+  <h1>📘 الدليل الفني للأجهزة</h1>
+  <p>اختر أحد الأدلة أدناه للاطلاع على تعليمات الاستخدام:</p>
+
+  <div class="pdf-container">
+    <!-- ملف Airbus -->
+    <div class="pdf-box">
+      <h2>Airbus</h2>
+      <p>دليل استخدام أجهزة ايرباص</p>
+      <iframe src="Airbus.pdf"></iframe>
+      <a class="btn" href="Airbus.pdf" target="_blank">فتح في نافذة جديدة</a>
+    </div>
+
+    <!-- ملف Sepura -->
+    <div class="pdf-box">
+      <h2>Sepura</h2>
+      <p>دليل استخدام أجهزة سيبورا</p>
+      <iframe src="Sepura.pdf"></iframe>
+      <a class="btn" href="Sepura.pdf" target="_blank">فتح في نافذة جديدة</a>
+    </div>
+  </div>
 
 </body>
 </html>
