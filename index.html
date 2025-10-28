@@ -3,107 +3,130 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>بوابة الدخول - الدليل الفني للأجهزة</title>
+  <title>الدليل الفني للأجهزة</title>
+
   <style>
     body {
-      font-family: "Tajawal", Arial, sans-serif;
-      background: linear-gradient(135deg, #002b5c, #004d99);
-      color: #fff;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      height: 100vh;
+      font-family: 'Tahoma', sans-serif;
+      background-color: #f5f7fa;
+      color: #003366;
       margin: 0;
+      padding: 0;
       text-align: center;
     }
 
-    .login-box {
-      background: rgba(255, 255, 255, 0.1);
-      padding: 40px 30px;
-      border-radius: 15px;
-      box-shadow: 0 0 15px rgba(0,0,0,0.3);
-      width: 90%;
-      max-width: 360px;
-    }
-
-    h1 {
-      font-size: 22px;
-      margin-bottom: 25px;
-    }
-
-    input {
-      width: 100%;
-      padding: 12px;
-      font-size: 16px;
-      border: none;
-      border-radius: 8px;
-      margin-bottom: 15px;
-      text-align: center;
-      outline: none;
-    }
-
-    button {
-      width: 100%;
-      padding: 12px;
-      background-color: #00aaff;
-      border: none;
+    header {
+      background-color: #003366;
       color: white;
-      font-size: 17px;
-      border-radius: 8px;
+      padding: 20px 10px;
+      font-size: 1.6em;
+      font-weight: bold;
+    }
+
+    main {
+      margin: 50px auto;
+      width: 90%;
+      max-width: 600px;
+    }
+
+    .folder {
+      background-color: white;
+      border-radius: 10px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+      padding: 25px;
+      margin: 20px 0;
+      transition: 0.3s;
       cursor: pointer;
-      transition: background-color 0.3s ease;
     }
 
-    button:hover {
-      background-color: #0088cc;
+    .folder:hover {
+      background-color: #eaf0f8;
+      transform: scale(1.02);
     }
 
-    .error {
-      color: #ffb3b3;
-      margin-top: 10px;
-      display: none;
-      font-size: 14px;
+    .folder h2 {
+      margin: 0;
+      color: #003366;
+    }
+
+    .counter {
+      margin-top: 15px;
+      font-size: 1em;
+      color: #444;
+    }
+
+    #visitCount {
+      font-weight: bold;
+      color: #003366;
+      transition: 0.3s ease-in-out;
     }
 
     footer {
-      position: absolute;
-      bottom: 10px;
-      font-size: 13px;
-      opacity: 0.8;
+      margin-top: 50px;
+      padding: 15px;
+      background-color: #003366;
+      color: white;
+      font-size: 0.9em;
     }
   </style>
 </head>
 <body>
 
-  <div class="login-box">
-    <h1>الرجاء إدخال رمز الدخول</h1>
-    <input type="password" id="passcode" placeholder="••••••">
-    <button onclick="checkCode()">دخول</button>
-    <div class="error" id="error">رمز الدخول غير صحيح</div>
-  </div>
+  <header>
+    الدليل الفني للأجهزة
+  </header>
 
-  <footer>© 2025 - وزارة الداخلية | الاتصالات</footer>
+  <main>
+    <p>اختر نوع الجهاز لعرض الدليل الفني:</p>
+
+    <div class="folder" onclick="openPDF('airbus.pdf')">
+      <h2>📘 أجهزة إيرباص (Airbus)</h2>
+      <p>دليل استخدام أجهزة إيرباص</p>
+    </div>
+
+    <div class="folder" onclick="openPDF('sepura.pdf')">
+      <h2>📗 أجهزة سيبورا (Sepura)</h2>
+      <p>دليل استخدام أجهزة سيبورا</p>
+    </div>
+
+    <div class="counter">
+      عدد الزيارات: <span id="visitCount">0</span>
+    </div>
+  </main>
+
+  <footer>
+    © جميع الحقوق محفوظة - الدليل الفني للأجهزة
+  </footer>
 
   <script>
-    // الرمز السري
-    const correctCode = "MOI2025";
-
-    function checkCode() {
-      const input = document.getElementById("passcode").value.trim();
-      const error = document.getElementById("error");
-
-      if (input === correctCode) {
-        window.location.href = "guide.html"; // الانتقال إلى الصفحة التالية
-      } else {
-        error.style.display = "block";
-      }
+    // التحقق من تسجيل الدخول
+    if (localStorage.getItem("authorized") !== "true") {
+      window.location.href = "login.html";
     }
 
-    // دخول بالضغط على Enter
-    document.getElementById("passcode").addEventListener("keypress", function(e) {
-      if (e.key === "Enter") checkCode();
-    });
+    // فتح ملف PDF
+    function openPDF(fileName) {
+      window.open(fileName, "_blank");
+    }
+
+    // عداد الزيارات مع حركة لطيفة
+    let count = localStorage.getItem("visitCount");
+    if (!count) count = 0;
+    count = parseInt(count) + 1;
+    localStorage.setItem("visitCount", count);
+
+    const counterElement = document.getElementById("visitCount");
+    let displayCount = 0;
+    const increment = Math.ceil(count / 50);
+
+    const animateCounter = setInterval(() => {
+      displayCount += increment;
+      if (displayCount >= count) {
+        displayCount = count;
+        clearInterval(animateCounter);
+      }
+      counterElement.textContent = displayCount;
+    }, 30);
   </script>
 
 </body>
