@@ -1,55 +1,107 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>الصفحة الرئيسية</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>تسجيل الدخول</title>
   <style>
+    @import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@400;600;700&display=swap');
     body {
-      background-color: #1e1e1e;
-      color: #fff;
-      font-family: "Cairo", sans-serif;
+      font-family: 'Tajawal', sans-serif;
+      background: linear-gradient(180deg, #f0f4f8, #dbeafe);
       display: flex;
       justify-content: center;
       align-items: center;
       height: 100vh;
       margin: 0;
     }
-
-    .message {
-      background-color: #2a2a2a;
-      padding: 30px;
-      border-radius: 10px;
+    .container {
+      background: white;
+      padding: 40px;
+      border-radius: 14px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
       text-align: center;
-      box-shadow: 0 0 15px rgba(0,0,0,0.4);
+      width: 90%;
+      max-width: 400px;
     }
-
-    a {
-      color: #0078d7;
-      text-decoration: none;
-      font-weight: bold;
+    h1 {
+      margin-bottom: 20px;
+      color: #1e293b;
     }
-
-    a:hover {
+    input {
+      width: 100%;
+      padding: 12px;
+      font-size: 16px;
+      border: 1px solid #cbd5e1;
+      border-radius: 8px;
+      text-align: center;
+      margin-bottom: 15px;
+    }
+    button {
+      background-color: #1e40af;
+      color: white;
+      border: none;
+      padding: 12px 25px;
+      border-radius: 8px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    button:hover {
+      background-color: #1d4ed8;
+    }
+    .hint {
+      background: none;
+      border: none;
+      color: #475569;
       text-decoration: underline;
+      font-size: 13px;
+      cursor: pointer;
+      margin-top: 8px;
+    }
+    .error {
+      color: red;
+      display: none;
+      margin-top: 10px;
+      font-size: 14px;
     }
   </style>
 </head>
 <body>
-  <div class="message" id="message"></div>
+
+  <div class="container">
+    <h1>رمز الدخول</h1>
+    <input type="password" id="accessCode" placeholder="••••••••">
+    <div id="error" class="error">⚠️ الرمز غير صحيح</div>
+    <button onclick="checkCode()">دخول</button>
+    <br />
+    <button class="hint" onclick="alert('رمز الدخول هو MOI2025')">تلميح</button>
+  </div>
 
   <script>
-    const isAuthenticated = localStorage.getItem("authenticated");
+    function checkCode() {
+      const code = document.getElementById("accessCode").value.trim();
+      const error = document.getElementById("error");
+      if (code === "MOI2025") {
+        localStorage.setItem("authenticated", "true");
+        localStorage.setItem("loginTime", Date.now());
+        window.location.href = "guide.html";
+      } else {
+        error.style.display = "block";
+      }
+    }
 
-    if (isAuthenticated === "true") {
-      // ✅ تسجيل دخول ناجح → الانتقال إلى صفحة الأدلة
-      window.location.href = "guide.html";
-    } else {
-      // ❌ لم يسجل الدخول
-      document.getElementById("message").innerHTML = `
-        <p>يجب تسجيل الدخول أولاً.</p>
-        <a href="login.html">الذهاب إلى صفحة الدخول</a>
-      `;
+    // في حال تسجيل الدخول سابقاً
+    if (localStorage.getItem("authenticated") === "true") {
+      const loginTime = localStorage.getItem("loginTime");
+      const elapsed = Date.now() - loginTime;
+      const maxTime = 10 * 60 * 1000; // 10 دقائق
+      if (elapsed < maxTime) {
+        window.location.href = "guide.html";
+      } else {
+        localStorage.removeItem("authenticated");
+        localStorage.removeItem("loginTime");
+      }
     }
   </script>
 </body>
