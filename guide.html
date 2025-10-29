@@ -6,33 +6,81 @@
   <title>الدليل الفني | Technical Guide</title>
   <style>
     body {
-      font-family: "Tajawal", sans-serif;
-      background-color: #f9f9f9;
       margin: 0;
       padding: 0;
-    }
-    header {
-      background: linear-gradient(to right, #003366, #005599);
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #0b4db8, #1976d2);
       color: white;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
       text-align: center;
-      padding: 25px;
     }
-    main {
-      padding: 30px;
-      text-align: center;
+
+    .card {
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(12px);
+      border-radius: 20px;
+      padding: 40px;
+      max-width: 400px;
+      width: 90%;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    }
+
+    h1 {
+      margin-bottom: 10px;
+      font-size: 24px;
+    }
+
+    h2 {
+      margin-bottom: 25px;
+      font-size: 18px;
+      font-weight: normal;
+    }
+
+    p {
+      margin-bottom: 30px;
+      font-size: 14px;
+      color: #e0e0e0;
+    }
+
+    .btn {
+      display: block;
+      width: 100%;
+      padding: 12px;
+      margin: 10px 0;
+      background: rgba(255, 255, 255, 0.2);
+      border: none;
+      border-radius: 10px;
+      color: white;
+      font-size: 15px;
+      text-decoration: none;
+      transition: background 0.3s, transform 0.2s;
+    }
+
+    .btn:hover {
+      background: rgba(255, 255, 255, 0.35);
+      transform: scale(1.03);
+    }
+
+    .small {
+      font-size: 12px;
+      color: #ccc;
     }
   </style>
 </head>
 <body>
-  <header>
-    <h1>📘 الدليل الفني</h1>
-    <h2>Technical User Guide</h2>
-  </header>
 
-  <main>
-    <p>مرحبًا بك في صفحة الأدلة الفنية.</p>
-    <p>Welcome to the Technical Guide page.</p>
-    <p>⬇️ هنا يمكنك إضافة روابط أو ملفات PDF لاحقًا.</p>
-  </main>
+  <div class="card">
+    <h1>📘 الدليل الفني</h1>
+    <h2>Technical Guide</h2>
+    <p>مرحباً بك في الدليل الفني الرسمي.<br>Welcome to the official technical guide.</p>
+
+    <a href="airbus.pdf" class="btn">📄 دليل استخدام أجهزة إيرباص<br><span class="small">Airbus Devices User Guide</span></a>
+    <a href="sepura.pdf" class="btn">📄 دليل استخدام أجهزة سيبورا<br><span class="small">Sepura Devices User Guide</span></a>
+  </div>
+
 </body>
 </html>
