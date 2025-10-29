@@ -3,93 +3,36 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>الدليل الفني للأجهزة</title>
+  <title>الدليل الفني | Technical Guide</title>
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@400;600;700&display=swap');
     body {
-      font-family: 'Tajawal', sans-serif;
-      background-color: #f8fafc;
+      font-family: "Tajawal", sans-serif;
+      background-color: #f9f9f9;
       margin: 0;
       padding: 0;
-      color: #1e293b;
-      text-align: center;
     }
     header {
-      background-color: #1e40af;
+      background: linear-gradient(to right, #003366, #005599);
       color: white;
-      padding: 20px;
-      font-size: 22px;
-      font-weight: 700;
+      text-align: center;
+      padding: 25px;
     }
-    .guides {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      margin-top: 40px;
-    }
-    .guide {
-      background: white;
-      width: 90%;
-      max-width: 500px;
-      padding: 20px;
-      border-radius: 12px;
-      margin: 10px 0;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-    }
-    a {
-      text-decoration: none;
-      color: #1d4ed8;
-      font-weight: 600;
-      font-size: 18px;
-    }
-    .footer {
-      margin-top: 40px;
-      color: #64748b;
-      font-size: 14px;
+    main {
+      padding: 30px;
+      text-align: center;
     }
   </style>
 </head>
 <body>
+  <header>
+    <h1>📘 الدليل الفني</h1>
+    <h2>Technical User Guide</h2>
+  </header>
 
-  <script>
-    // حماية الصفحة
-    if (localStorage.getItem('authenticated') !== 'true') {
-      window.location.href = 'index.html';
-    } else {
-      // تسجيل الخروج بعد 10 دقائق
-      const loginTime = localStorage.getItem("loginTime");
-      const elapsed = Date.now() - loginTime;
-      const maxTime = 10 * 60 * 1000;
-      if (elapsed >= maxTime) {
-        localStorage.removeItem("authenticated");
-        localStorage.removeItem("loginTime");
-        window.location.href = "index.html";
-      }
-    }
-  </script>
-
-  <header>📘 الدليل الفني للأجهزة</header>
-
-  <div class="guides">
-    <div class="guide">
-      <a href="دليل استخدام اجهزة ايرباص.pdf" target="_blank">📘 دليل استخدام أجهزة إيرباص</a>
-    </div>
-    <div class="guide">
-      <a href="دليل استخدام اجهزة سيبورا.pdf" target="_blank">📗 دليل استخدام أجهزة سيبورا</a>
-    </div>
-  </div>
-
-  <div class="footer">
-    🔢 عدد الزيارات: <span id="counter">0</span>
-  </div>
-
-  <script>
-    // عداد الزيارات
-    let count = localStorage.getItem('visitCount');
-    count = count ? parseInt(count) + 1 : 1;
-    localStorage.setItem('visitCount', count);
-    document.getElementById('counter').textContent = count;
-  </script>
-
+  <main>
+    <p>مرحبًا بك في صفحة الأدلة الفنية.</p>
+    <p>Welcome to the Technical Guide page.</p>
+    <p>⬇️ هنا يمكنك إضافة روابط أو ملفات PDF لاحقًا.</p>
+  </main>
 </body>
 </html>
