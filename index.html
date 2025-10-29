@@ -1,198 +1,124 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>الدليل الفني | Technical Guide</title>
-<style>
-  body {
-    margin: 0;
-    font-family: "Tajawal", sans-serif;
-    background: linear-gradient(135deg, #0b3d91, #1a73e8);
-    color: white;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    flex-direction: column;
-    text-align: center;
-  }
-
-  header {
-    position: fixed;
-    top: 0;
-    width: 100%;
-    background: linear-gradient(90deg, #002f6c, #004aad);
-    color: white;
-    padding: 15px 0;
-    font-size: 22px;
-    font-weight: bold;
-    text-align: center;
-    letter-spacing: 1px;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.3);
-  }
-
-  header small {
-    display: block;
-    font-size: 13px;
-    font-weight: normal;
-    color: #d0d0d0;
-  }
-
-  .container {
-    background: rgba(255, 255, 255, 0.1);
-    padding: 30px;
-    border-radius: 15px;
-    box-shadow: 0 0 20px rgba(0,0,0,0.3);
-    width: 350px;
-    backdrop-filter: blur(10px);
-    margin-top: 100px; /* حتى لا يغطي العنوان الصفحة */
-  }
-
-  input {
-    width: 90%;
-    padding: 10px;
-    border: none;
-    border-radius: 8px;
-    margin-bottom: 15px;
-    text-align: center;
-    font-size: 16px;
-  }
-
-  button {
-    width: 100%;
-    background: #004aad;
-    color: white;
-    border: none;
-    padding: 10px;
-    border-radius: 8px;
-    cursor: pointer;
-    font-size: 16px;
-    transition: background 0.3s;
-  }
-
-  button:hover { background: #002f6c; }
-
-  .hidden { display: none; }
-
-  .guide { max-width: 600px; text-align: center; }
-
-  .pdf-section {
-    margin-top: 25px;
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-  }
-
-  .pdf-button {
-    background: rgba(255,255,255,0.15);
-    border: 1px solid rgba(255,255,255,0.3);
-    padding: 15px;
-    border-radius: 10px;
-    transition: all 0.3s;
-  }
-
-  .pdf-button:hover {
-    background: rgba(255,255,255,0.3);
-    transform: scale(1.03);
-  }
-
-  .pdf-title {
-    font-size: 18px;
-    font-weight: bold;
-  }
-
-  .pdf-sub {
-    font-size: 13px;
-    opacity: 0.8;
-  }
-
-  .counter {
-    margin-top: 25px;
-    font-size: 14px;
-    line-height: 1.7;
-    border-top: 1px solid rgba(255,255,255,0.2);
-    padding-top: 10px;
-  }
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>دليل المستخدم | User Guide</title>
+  <style>
+    body {
+      font-family: "Tajawal", sans-serif;
+      background: linear-gradient(135deg, #1e293b, #334155);
+      color: white;
+      margin: 0;
+      padding: 0;
+      text-align: center;
+    }
+    header {
+      background-color: #0f172a;
+      padding: 20px 10px;
+      font-size: 1.8em;
+      font-weight: bold;
+      color: #38bdf8;
+    }
+    .container {
+      margin-top: 40px;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 25px;
+    }
+    .card {
+      background: #1e293b;
+      border: 2px solid #38bdf8;
+      border-radius: 10px;
+      padding: 25px;
+      width: 260px;
+      transition: all 0.3s ease;
+    }
+    .card:hover {
+      transform: scale(1.05);
+      background: #0f172a;
+    }
+    .card h2 {
+      color: #38bdf8;
+      margin-bottom: 15px;
+    }
+    .btn {
+      display: block;
+      background-color: #38bdf8;
+      color: #0f172a;
+      padding: 10px 15px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: bold;
+      margin: 8px 0;
+      transition: 0.3s;
+    }
+    .btn:hover {
+      background-color: #0ea5e9;
+    }
+    .lang-switch {
+      position: fixed;
+      top: 15px;
+      left: 15px;
+      background-color: #38bdf8;
+      color: #0f172a;
+      border: none;
+      padding: 8px 12px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+  </style>
 </head>
 <body>
 
-<header>
-  الدليل الفني
-  <small>Technical Guide</small>
-</header>
+  <button class="lang-switch" onclick="toggleLanguage()">English</button>
 
-<!-- صفحة الدخول -->
-<div id="login" class="container">
-  <h2>مرحبًا بك</h2>
-  <p>أدخل رمز الدخول للوصول إلى الدليل الفني<br><small>Enter access code to continue</small></p>
-  <input type="password" id="code" placeholder="رمز الدخول / Access Code">
-  <button onclick="checkCode()">دخول / Login</button>
-  <p id="error" style="color: #ffb3b3; display: none;">رمز الدخول غير صحيح ❌<br>Incorrect access code</p>
-</div>
+  <header id="title">📘 دليل المستخدم</header>
 
-<!-- صفحة الدليل الفني -->
-<div id="guide" class="container hidden">
-  <div class="guide">
-    <h2>📘 الدليل الفني<br><small>Technical Guide</small></h2>
-    <p>مرحبًا بك في الدليل الفني الرسمي.<br>Welcome to the official technical guide.</p>
-
-    <div class="pdf-section">
-      <div class="pdf-button" onclick="openPDF('Airbus')">
-        <div class="pdf-title">📄 دليل استخدام أجهزة إيرباص</div>
-        <div class="pdf-sub">Airbus Devices User Guide</div>
-      </div>
-
-      <div class="pdf-button" onclick="openPDF('Sepura')">
-        <div class="pdf-title">📄 دليل استخدام أجهزة سيبورا</div>
-        <div class="pdf-sub">Sepura Devices User Guide</div>
-      </div>
+  <div class="container" id="cards">
+    <div class="card">
+      <h2 id="airbus-title">دليل Airbus</h2>
+      <a href="airbus.pdf" target="_blank" class="btn" id="airbus-view">عرض الملف</a>
+      <a href="airbus.pdf" download class="btn" id="airbus-download">تحميل الملف</a>
     </div>
-
-    <div class="counter" id="visitCount">عدد الزيارات: 0<br>Visits count: 0</div>
+    <div class="card">
+      <h2 id="sepura-title">دليل Sepura</h2>
+      <a href="sepura.pdf" target="_blank" class="btn" id="sepura-view">عرض الملف</a>
+      <a href="sepura.pdf" download class="btn" id="sepura-download">تحميل الملف</a>
+    </div>
   </div>
-</div>
 
-<script>
-  const correctCode = "MOI2025";
-  const loginDiv = document.getElementById("login");
-  const guideDiv = document.getElementById("guide");
-  const errorMsg = document.getElementById("error");
-  const visitCountDisplay = document.getElementById("visitCount");
-
-  function checkCode() {
-    const entered = document.getElementById("code").value.trim();
-    if (entered === correctCode) {
-      loginDiv.classList.add("hidden");
-      guideDiv.classList.remove("hidden");
-      errorMsg.style.display = "none";
-      increaseVisitCount();
-    } else {
-      errorMsg.style.display = "block";
+  <script>
+    let isArabic = true;
+    function toggleLanguage() {
+      isArabic = !isArabic;
+      if (isArabic) {
+        document.documentElement.lang = "ar";
+        document.documentElement.dir = "rtl";
+        document.getElementById("title").textContent = "📘 دليل المستخدم";
+        document.getElementById("airbus-title").textContent = "دليل Airbus";
+        document.getElementById("airbus-view").textContent = "عرض الملف";
+        document.getElementById("airbus-download").textContent = "تحميل الملف";
+        document.getElementById("sepura-title").textContent = "دليل Sepura";
+        document.getElementById("sepura-view").textContent = "عرض الملف";
+        document.getElementById("sepura-download").textContent = "تحميل الملف";
+        document.querySelector(".lang-switch").textContent = "English";
+      } else {
+        document.documentElement.lang = "en";
+        document.documentElement.dir = "ltr";
+        document.getElementById("title").textContent = "📘 User Guide";
+        document.getElementById("airbus-title").textContent = "Airbus Guide";
+        document.getElementById("airbus-view").textContent = "View File";
+        document.getElementById("airbus-download").textContent = "Download File";
+        document.getElementById("sepura-title").textContent = "Sepura Guide";
+        document.getElementById("sepura-view").textContent = "View File";
+        document.getElementById("sepura-download").textContent = "Download File";
+        document.querySelector(".lang-switch").textContent = "العربية";
+      }
     }
-  }
-
-  function increaseVisitCount() {
-    let count = localStorage.getItem("visitCount");
-    count = count ? parseInt(count) + 1 : 1;
-    localStorage.setItem("visitCount", count);
-    visitCountDisplay.innerHTML = `عدد الزيارات: ${count}<br>Visits count: ${count}`;
-  }
-
-  function openPDF(type) {
-    if (type === 'Airbus') {
-      window.open('Airbus.pdf', '_blank');
-    } else if (type === 'Sepura') {
-      window.open('Sepura.pdf', '_blank');
-    }
-  }
-
-  window.onload = () => {
-    const savedCount = localStorage.getItem("visitCount") || 0;
-    visitCountDisplay.innerHTML = `عدد الزيارات: ${savedCount}<br>Visits count: ${savedCount}`;
-  };
-</script>
+  </script>
 
 </body>
 </html>
