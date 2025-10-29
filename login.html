@@ -3,81 +3,67 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>تسجيل الدخول | Login</title>
+  <title>رمز الدخول | Access Code</title>
   <style>
     body {
-      margin: 0;
-      height: 100vh;
+      font-family: "Tajawal", sans-serif;
+      background: linear-gradient(to right, #003366, #005599);
+      color: white;
       display: flex;
       justify-content: center;
       align-items: center;
-      font-family: "Tajawal", Arial, sans-serif;
-      background: linear-gradient(135deg, #0a4b9b, #004aad);
-      color: white;
+      height: 100vh;
+      flex-direction: column;
       text-align: center;
     }
-
-    .login-box {
-      background: rgba(255, 255, 255, 0.1);
-      padding: 40px;
-      border-radius: 20px;
-      backdrop-filter: blur(10px);
-      box-shadow: 0 4px 20px rgba(0,0,0,0.3);
-      width: 90%;
-      max-width: 400px;
-    }
-
     input {
       padding: 12px;
       border: none;
-      border-radius: 10px;
-      width: 100%;
-      margin: 15px 0;
-      text-align: center;
-      font-size: 1.1em;
-    }
-
-    button {
-      background: #ffffff33;
-      border: none;
-      color: white;
-      padding: 12px 25px;
-      border-radius: 10px;
-      cursor: pointer;
-      font-size: 1.1em;
-      transition: 0.3s;
-      width: 100%;
-    }
-
-    button:hover {
-      background: #ffffff55;
-    }
-
-    small {
-      display: block;
+      border-radius: 5px;
       margin-top: 15px;
-      font-size: 0.9em;
-      opacity: 0.8;
+      width: 250px;
+      font-size: 18px;
+      text-align: center;
+    }
+    button {
+      margin-top: 15px;
+      padding: 10px 25px;
+      font-size: 18px;
+      border: none;
+      border-radius: 5px;
+      background-color: #ffcc00;
+      cursor: pointer;
+      color: #003366;
+      font-weight: bold;
+    }
+    button:hover {
+      background-color: #ffe066;
+    }
+    .note {
+      margin-top: 20px;
+      font-size: 14px;
+      color: #ddd;
     }
   </style>
 </head>
 <body>
-  <div class="login-box">
-    <h2>🔑 رمز الدخول</h2>
-    <p>الرجاء إدخال الرمز للدخول إلى الدليل الفني</p>
+  <h2>🔐 رمز الدخول</h2>
+  <h3>Access Code</h3>
 
-    <input type="password" id="passcode" placeholder="أدخل الرمز هنا" />
-    <button onclick="checkPass()">دخول</button>
-    <small>Enter access code to continue</small>
-  </div>
+  <input type="password" id="accessCode" placeholder="أدخل الرمز / Enter code">
+  <button onclick="checkCode()">دخول / Enter</button>
+
+  <p class="note">رمز الدخول مؤقت لأغراض العرض فقط</p>
 
   <script>
-    function checkPass() {
-      const code = document.getElementById('passcode').value;
-      if (code === "MOI2025") {
-        window.location.href = "index.html";
+    function checkCode() {
+      const code = document.getElementById("accessCode").value.trim();
+      const validCode = "MOI2025";
+
+      if (code === validCode) {
+        window.location.href = "guide.html";
       } else {
-        alert("⚠️ الرمز غير صحيح، حاول مرة أخرى");
+        alert("رمز غير صحيح ❌ / Incorrect code ❌");
       }
     }
   </script>
