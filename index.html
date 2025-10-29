@@ -1,124 +1,99 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>دليل المستخدم | User Guide</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>الدليل الفني | Technical Guide</title>
   <style>
     body {
-      font-family: "Tajawal", sans-serif;
-      background: linear-gradient(135deg, #1e293b, #334155);
-      color: white;
       margin: 0;
-      padding: 0;
+      font-family: "Tajawal", Arial, sans-serif;
+      background: linear-gradient(135deg, #0a4b9b, #004aad);
+      color: white;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
       text-align: center;
     }
-    header {
-      background-color: #0f172a;
-      padding: 20px 10px;
-      font-size: 1.8em;
-      font-weight: bold;
-      color: #38bdf8;
-    }
-    .container {
-      margin-top: 40px;
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      gap: 25px;
-    }
+
     .card {
-      background: #1e293b;
-      border: 2px solid #38bdf8;
-      border-radius: 10px;
-      padding: 25px;
-      width: 260px;
-      transition: all 0.3s ease;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 20px;
+      padding: 30px;
+      width: 90%;
+      max-width: 420px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+      backdrop-filter: blur(10px);
     }
-    .card:hover {
-      transform: scale(1.05);
-      background: #0f172a;
+
+    h1 {
+      font-size: 1.8em;
+      margin-bottom: 10px;
     }
-    .card h2 {
-      color: #38bdf8;
-      margin-bottom: 15px;
+
+    h2 {
+      font-size: 1.3em;
+      margin: 0 0 20px 0;
     }
-    .btn {
+
+    p {
+      margin: 10px 0 20px 0;
+      font-size: 1em;
+    }
+
+    a {
       display: block;
-      background-color: #38bdf8;
-      color: #0f172a;
-      padding: 10px 15px;
-      border-radius: 8px;
       text-decoration: none;
-      font-weight: bold;
-      margin: 8px 0;
+      color: white;
+      background: rgba(255, 255, 255, 0.15);
+      border-radius: 12px;
+      padding: 15px;
+      margin: 10px 0;
       transition: 0.3s;
+      font-size: 1.1em;
     }
-    .btn:hover {
-      background-color: #0ea5e9;
+
+    a:hover {
+      background: rgba(255, 255, 255, 0.3);
+      transform: translateY(-2px);
     }
-    .lang-switch {
-      position: fixed;
-      top: 15px;
-      left: 15px;
-      background-color: #38bdf8;
-      color: #0f172a;
-      border: none;
-      padding: 8px 12px;
-      border-radius: 8px;
-      cursor: pointer;
-      font-weight: bold;
+
+    small {
+      display: block;
+      font-size: 0.85em;
+      opacity: 0.8;
+    }
+
+    footer {
+      margin-top: 20px;
+      font-size: 0.9em;
+      opacity: 0.8;
     }
   </style>
 </head>
+
 <body>
+  <div class="card">
+    <h1>📘 الدليل الفني</h1>
+    <h2>Technical Guide</h2>
+    <p>
+      مرحباً بك في الدليل الفني الرسمي.<br />
+      Welcome to the official technical guide.
+    </p>
 
-  <button class="lang-switch" onclick="toggleLanguage()">English</button>
+    <a href="airbus.pdf" target="_blank">
+      📄 دليل استخدام أجهزة إيرباص
+      <small>Airbus Devices User Guide</small>
+    </a>
 
-  <header id="title">📘 دليل المستخدم</header>
+    <a href="sepura.pdf" target="_blank">
+      📄 دليل استخدام أجهزة سيبورا
+      <small>Sepura Devices User Guide</small>
+    </a>
 
-  <div class="container" id="cards">
-    <div class="card">
-      <h2 id="airbus-title">دليل Airbus</h2>
-      <a href="airbus.pdf" target="_blank" class="btn" id="airbus-view">عرض الملف</a>
-      <a href="airbus.pdf" download class="btn" id="airbus-download">تحميل الملف</a>
-    </div>
-    <div class="card">
-      <h2 id="sepura-title">دليل Sepura</h2>
-      <a href="sepura.pdf" target="_blank" class="btn" id="sepura-view">عرض الملف</a>
-      <a href="sepura.pdf" download class="btn" id="sepura-download">تحميل الملف</a>
-    </div>
+    <footer>📈 عدد الزيارات: 29<br>Visits count: 29</footer>
   </div>
-
-  <script>
-    let isArabic = true;
-    function toggleLanguage() {
-      isArabic = !isArabic;
-      if (isArabic) {
-        document.documentElement.lang = "ar";
-        document.documentElement.dir = "rtl";
-        document.getElementById("title").textContent = "📘 دليل المستخدم";
-        document.getElementById("airbus-title").textContent = "دليل Airbus";
-        document.getElementById("airbus-view").textContent = "عرض الملف";
-        document.getElementById("airbus-download").textContent = "تحميل الملف";
-        document.getElementById("sepura-title").textContent = "دليل Sepura";
-        document.getElementById("sepura-view").textContent = "عرض الملف";
-        document.getElementById("sepura-download").textContent = "تحميل الملف";
-        document.querySelector(".lang-switch").textContent = "English";
-      } else {
-        document.documentElement.lang = "en";
-        document.documentElement.dir = "ltr";
-        document.getElementById("title").textContent = "📘 User Guide";
-        document.getElementById("airbus-title").textContent = "Airbus Guide";
-        document.getElementById("airbus-view").textContent = "View File";
-        document.getElementById("airbus-download").textContent = "Download File";
-        document.getElementById("sepura-title").textContent = "Sepura Guide";
-        document.getElementById("sepura-view").textContent = "View File";
-        document.getElementById("sepura-download").textContent = "Download File";
-        document.querySelector(".lang-switch").textContent = "العربية";
-      }
-    }
-  </script>
-
 </body>
 </html>
