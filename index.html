@@ -1,108 +1,198 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>تسجيل الدخول</title>
-  <style>
-    @import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@400;600;700&display=swap');
-    body {
-      font-family: 'Tajawal', sans-serif;
-      background: linear-gradient(180deg, #f0f4f8, #dbeafe);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      margin: 0;
-    }
-    .container {
-      background: white;
-      padding: 40px;
-      border-radius: 14px;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-      text-align: center;
-      width: 90%;
-      max-width: 400px;
-    }
-    h1 {
-      margin-bottom: 20px;
-      color: #1e293b;
-    }
-    input {
-      width: 100%;
-      padding: 12px;
-      font-size: 16px;
-      border: 1px solid #cbd5e1;
-      border-radius: 8px;
-      text-align: center;
-      margin-bottom: 15px;
-    }
-    button {
-      background-color: #1e40af;
-      color: white;
-      border: none;
-      padding: 12px 25px;
-      border-radius: 8px;
-      font-size: 16px;
-      cursor: pointer;
-      transition: background 0.3s;
-    }
-    button:hover {
-      background-color: #1d4ed8;
-    }
-    .hint {
-      background: none;
-      border: none;
-      color: #475569;
-      text-decoration: underline;
-      font-size: 13px;
-      cursor: pointer;
-      margin-top: 8px;
-    }
-    .error {
-      color: red;
-      display: none;
-      margin-top: 10px;
-      font-size: 14px;
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>الدليل الفني | Technical Guide</title>
+<style>
+  body {
+    margin: 0;
+    font-family: "Tajawal", sans-serif;
+    background: linear-gradient(135deg, #0b3d91, #1a73e8);
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    flex-direction: column;
+    text-align: center;
+  }
+
+  header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background: linear-gradient(90deg, #002f6c, #004aad);
+    color: white;
+    padding: 15px 0;
+    font-size: 22px;
+    font-weight: bold;
+    text-align: center;
+    letter-spacing: 1px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+  }
+
+  header small {
+    display: block;
+    font-size: 13px;
+    font-weight: normal;
+    color: #d0d0d0;
+  }
+
+  .container {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.3);
+    width: 350px;
+    backdrop-filter: blur(10px);
+    margin-top: 100px; /* حتى لا يغطي العنوان الصفحة */
+  }
+
+  input {
+    width: 90%;
+    padding: 10px;
+    border: none;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    text-align: center;
+    font-size: 16px;
+  }
+
+  button {
+    width: 100%;
+    background: #004aad;
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background 0.3s;
+  }
+
+  button:hover { background: #002f6c; }
+
+  .hidden { display: none; }
+
+  .guide { max-width: 600px; text-align: center; }
+
+  .pdf-section {
+    margin-top: 25px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .pdf-button {
+    background: rgba(255,255,255,0.15);
+    border: 1px solid rgba(255,255,255,0.3);
+    padding: 15px;
+    border-radius: 10px;
+    transition: all 0.3s;
+  }
+
+  .pdf-button:hover {
+    background: rgba(255,255,255,0.3);
+    transform: scale(1.03);
+  }
+
+  .pdf-title {
+    font-size: 18px;
+    font-weight: bold;
+  }
+
+  .pdf-sub {
+    font-size: 13px;
+    opacity: 0.8;
+  }
+
+  .counter {
+    margin-top: 25px;
+    font-size: 14px;
+    line-height: 1.7;
+    border-top: 1px solid rgba(255,255,255,0.2);
+    padding-top: 10px;
+  }
+</style>
 </head>
 <body>
 
-  <div class="container">
-    <h1>رمز الدخول</h1>
-    <input type="password" id="accessCode" placeholder="••••••••">
-    <div id="error" class="error">⚠️ الرمز غير صحيح</div>
-    <button onclick="checkCode()">دخول</button>
-    <br />
-    <button class="hint" onclick="alert('رمز الدخول هو MOI2025')">تلميح</button>
+<header>
+  الدليل الفني
+  <small>Technical Guide</small>
+</header>
+
+<!-- صفحة الدخول -->
+<div id="login" class="container">
+  <h2>مرحبًا بك</h2>
+  <p>أدخل رمز الدخول للوصول إلى الدليل الفني<br><small>Enter access code to continue</small></p>
+  <input type="password" id="code" placeholder="رمز الدخول / Access Code">
+  <button onclick="checkCode()">دخول / Login</button>
+  <p id="error" style="color: #ffb3b3; display: none;">رمز الدخول غير صحيح ❌<br>Incorrect access code</p>
+</div>
+
+<!-- صفحة الدليل الفني -->
+<div id="guide" class="container hidden">
+  <div class="guide">
+    <h2>📘 الدليل الفني<br><small>Technical Guide</small></h2>
+    <p>مرحبًا بك في الدليل الفني الرسمي.<br>Welcome to the official technical guide.</p>
+
+    <div class="pdf-section">
+      <div class="pdf-button" onclick="openPDF('Airbus')">
+        <div class="pdf-title">📄 دليل استخدام أجهزة إيرباص</div>
+        <div class="pdf-sub">Airbus Devices User Guide</div>
+      </div>
+
+      <div class="pdf-button" onclick="openPDF('Sepura')">
+        <div class="pdf-title">📄 دليل استخدام أجهزة سيبورا</div>
+        <div class="pdf-sub">Sepura Devices User Guide</div>
+      </div>
+    </div>
+
+    <div class="counter" id="visitCount">عدد الزيارات: 0<br>Visits count: 0</div>
   </div>
+</div>
 
-  <script>
-    function checkCode() {
-      const code = document.getElementById("accessCode").value.trim();
-      const error = document.getElementById("error");
-      if (code === "MOI2025") {
-        localStorage.setItem("authenticated", "true");
-        localStorage.setItem("loginTime", Date.now());
-        window.location.href = "guide.html";
-      } else {
-        error.style.display = "block";
-      }
-    }
+<script>
+  const correctCode = "MOI2025";
+  const loginDiv = document.getElementById("login");
+  const guideDiv = document.getElementById("guide");
+  const errorMsg = document.getElementById("error");
+  const visitCountDisplay = document.getElementById("visitCount");
 
-    // في حال تسجيل الدخول سابقاً
-    if (localStorage.getItem("authenticated") === "true") {
-      const loginTime = localStorage.getItem("loginTime");
-      const elapsed = Date.now() - loginTime;
-      const maxTime = 10 * 60 * 1000; // 10 دقائق
-      if (elapsed < maxTime) {
-        window.location.href = "guide.html";
-      } else {
-        localStorage.removeItem("authenticated");
-        localStorage.removeItem("loginTime");
-      }
+  function checkCode() {
+    const entered = document.getElementById("code").value.trim();
+    if (entered === correctCode) {
+      loginDiv.classList.add("hidden");
+      guideDiv.classList.remove("hidden");
+      errorMsg.style.display = "none";
+      increaseVisitCount();
+    } else {
+      errorMsg.style.display = "block";
     }
-  </script>
+  }
+
+  function increaseVisitCount() {
+    let count = localStorage.getItem("visitCount");
+    count = count ? parseInt(count) + 1 : 1;
+    localStorage.setItem("visitCount", count);
+    visitCountDisplay.innerHTML = `عدد الزيارات: ${count}<br>Visits count: ${count}`;
+  }
+
+  function openPDF(type) {
+    if (type === 'Airbus') {
+      window.open('Airbus.pdf', '_blank');
+    } else if (type === 'Sepura') {
+      window.open('Sepura.pdf', '_blank');
+    }
+  }
+
+  window.onload = () => {
+    const savedCount = localStorage.getItem("visitCount") || 0;
+    visitCountDisplay.innerHTML = `عدد الزيارات: ${savedCount}<br>Visits count: ${savedCount}`;
+  };
+</script>
+
 </body>
 </html>
