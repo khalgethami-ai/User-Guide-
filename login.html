@@ -1,107 +1,106 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>رمز الدخول | Access Code</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>الدليل الفني | Technical Guide</title>
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@400;600&display=swap');
-
     body {
       font-family: "Tajawal", sans-serif;
-      background: 
-        linear-gradient(rgba(0, 45, 91, 0.8), rgba(0, 45, 91, 0.9)),
-        url('https://images.unsplash.com/photo-1521791136064-7986c2920216?auto=format&fit=crop&w=1470&q=80');
-      background-size: cover;
-      background-position: center;
+      background: linear-gradient(to bottom right, #0a2342, #0d3b66);
       color: white;
       display: flex;
+      flex-direction: column;
       justify-content: center;
       align-items: center;
       height: 100vh;
-      flex-direction: column;
-      text-align: center;
-      backdrop-filter: blur(3px);
+      margin: 0;
     }
 
+    /* الشعار */
+    .logo {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    .logo h1 {
+      font-size: 2.2em;
+      margin: 0;
+    }
+
+    .logo h2 {
+      font-size: 1.1em;
+      margin: 0;
+      color: #cfd8dc;
+      font-weight: 400;
+    }
+
+    /* مربع الإدخال */
     .login-box {
       background: rgba(255, 255, 255, 0.1);
-      padding: 40px;
+      padding: 30px 40px;
       border-radius: 15px;
-      box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
-      width: 320px;
+      text-align: center;
+      box-shadow: 0 0 15px rgba(255, 255, 255, 0.1);
     }
 
-    h2, h3 {
-      margin: 0;
-      color: #ffcc00;
-    }
-
-    input {
+    input[type="password"] {
+      width: 100%;
       padding: 12px;
       border: none;
-      border-radius: 5px;
-      margin-top: 20px;
-      width: 90%;
-      font-size: 18px;
+      border-radius: 8px;
+      margin-top: 10px;
+      margin-bottom: 20px;
       text-align: center;
-      outline: none;
+      font-size: 1em;
     }
 
     button {
-      margin-top: 20px;
-      padding: 12px 30px;
-      font-size: 18px;
+      background-color: #1e88e5;
+      color: white;
       border: none;
-      border-radius: 5px;
-      background-color: #ffcc00;
+      padding: 10px 20px;
+      border-radius: 8px;
       cursor: pointer;
-      color: #003366;
-      font-weight: bold;
-      transition: 0.3s;
+      font-size: 1em;
     }
 
     button:hover {
-      background-color: #ffe066;
-      transform: scale(1.05);
+      background-color: #1565c0;
     }
 
-    .note {
-      margin-top: 15px;
-      font-size: 14px;
-      color: #ddd;
-    }
-
-    footer {
-      position: absolute;
-      bottom: 15px;
-      font-size: 13px;
-      color: #ccc;
+    .error {
+      color: #ffb74d;
+      margin-top: 10px;
+      font-size: 0.9em;
     }
   </style>
 </head>
 <body>
-  <div class="login-box">
-    <h2>🔐 رمز الدخول</h2>
-    <h3>Access Code</h3>
-
-    <input type="password" id="accessCode" placeholder="أدخل الرمز / Enter code">
-    <button onclick="checkCode()">دخول / Enter</button>
-
-    <p class="note">رمز الدخول مؤقت لأغراض العرض فقط</p>
+  <!-- الشعار -->
+  <div class="logo">
+    <h1>الدليل الفني</h1>
+    <h2>Technical Guide</h2>
   </div>
 
-  <footer>© 2025 - Technical User Guide | الدليل الفني</footer>
+  <!-- مربع تسجيل الدخول -->
+  <div class="login-box">
+    <h3>يرجى إدخال رمز الدخول</h3>
+    <input type="password" id="password" placeholder="رمز الدخول">
+    <button onclick="checkPassword()">دخول</button>
+    <div id="error-message" class="error"></div>
+  </div>
 
   <script>
-    function checkCode() {
-      const code = document.getElementById("accessCode").value.trim();
-      const validCode = "MOI2025"; // يمكنك تغييره لاحقًا
+    function checkPassword() {
+      const password = document.getElementById("password").value.trim();
+      const correctPassword = "MOI2025"; // رمز الدخول الثابت
+      const errorMessage = document.getElementById("error-message");
 
-      if (code === validCode) {
+      if (password === correctPassword) {
         window.location.href = "guide.html";
       } else {
-        alert("رمز غير صحيح ❌ / Incorrect code ❌");
+        errorMessage.textContent = "رمز الدخول غير صحيح، حاول مرة أخرى.";
       }
     }
   </script>
